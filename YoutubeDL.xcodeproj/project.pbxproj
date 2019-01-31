@@ -7,22 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EEAEFABB220330C200C683EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAEFABA220330C200C683EB /* AppDelegate.swift */; };
-		EEAEFABD220330C400C683EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEAEFABC220330C400C683EB /* Assets.xcassets */; };
-		EEAEFAC0220330C400C683EB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEAEFABE220330C400C683EB /* MainMenu.xib */; };
+		EEAEFACF2203313100C683EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAEFACE2203313100C683EB /* AppDelegate.swift */; };
+		EEAEFAD12203313200C683EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEAEFAD02203313200C683EB /* Assets.xcassets */; };
+		EEAEFAD42203313200C683EB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEAEFAD22203313200C683EB /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EEAEFAB7220330C200C683EB /* YoutubeDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoutubeDL.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		EEAEFABA220330C200C683EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EEAEFABC220330C400C683EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		EEAEFABF220330C400C683EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		EEAEFAC1220330C400C683EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EEAEFAC2220330C400C683EB /* YoutubeDL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YoutubeDL.entitlements; sourceTree = "<group>"; };
+		EEAEFACC2203313100C683EB /* YoutubeDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoutubeDL.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEAEFACE2203313100C683EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EEAEFAD02203313200C683EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EEAEFAD32203313200C683EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		EEAEFAD52203313200C683EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEAEFAD62203313200C683EB /* YoutubeDL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YoutubeDL.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		EEAEFAB4220330C200C683EB /* Frameworks */ = {
+		EEAEFAC92203313100C683EB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -35,7 +35,7 @@
 		EEAEFAAE220330C200C683EB = {
 			isa = PBXGroup;
 			children = (
-				EEAEFAB9220330C200C683EB /* YoutubeDL */,
+				EEAEFACD2203313100C683EB /* YoutubeDL */,
 				EEAEFAB8220330C200C683EB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,19 +43,19 @@
 		EEAEFAB8220330C200C683EB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EEAEFAB7220330C200C683EB /* YoutubeDL.app */,
+				EEAEFACC2203313100C683EB /* YoutubeDL.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EEAEFAB9220330C200C683EB /* YoutubeDL */ = {
+		EEAEFACD2203313100C683EB /* YoutubeDL */ = {
 			isa = PBXGroup;
 			children = (
-				EEAEFABA220330C200C683EB /* AppDelegate.swift */,
-				EEAEFABC220330C400C683EB /* Assets.xcassets */,
-				EEAEFABE220330C400C683EB /* MainMenu.xib */,
-				EEAEFAC1220330C400C683EB /* Info.plist */,
-				EEAEFAC2220330C400C683EB /* YoutubeDL.entitlements */,
+				EEAEFACE2203313100C683EB /* AppDelegate.swift */,
+				EEAEFAD02203313200C683EB /* Assets.xcassets */,
+				EEAEFAD22203313200C683EB /* MainMenu.xib */,
+				EEAEFAD52203313200C683EB /* Info.plist */,
+				EEAEFAD62203313200C683EB /* YoutubeDL.entitlements */,
 			);
 			path = YoutubeDL;
 			sourceTree = "<group>";
@@ -63,21 +63,21 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EEAEFAB6220330C200C683EB /* YoutubeDL */ = {
+		EEAEFACB2203313100C683EB /* macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EEAEFAC5220330C400C683EB /* Build configuration list for PBXNativeTarget "YoutubeDL" */;
+			buildConfigurationList = EEAEFAD72203313200C683EB /* Build configuration list for PBXNativeTarget "macOS" */;
 			buildPhases = (
-				EEAEFAB3220330C200C683EB /* Sources */,
-				EEAEFAB4220330C200C683EB /* Frameworks */,
-				EEAEFAB5220330C200C683EB /* Resources */,
+				EEAEFAC82203313100C683EB /* Sources */,
+				EEAEFAC92203313100C683EB /* Frameworks */,
+				EEAEFACA2203313100C683EB /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = YoutubeDL;
+			name = macOS;
 			productName = YoutubeDL;
-			productReference = EEAEFAB7220330C200C683EB /* YoutubeDL.app */;
+			productReference = EEAEFACC2203313100C683EB /* YoutubeDL.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -90,7 +90,7 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = 0bmxa;
 				TargetAttributes = {
-					EEAEFAB6220330C200C683EB = {
+					EEAEFACB2203313100C683EB = {
 						CreatedOnToolsVersion = 10.1;
 					};
 				};
@@ -108,39 +108,39 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EEAEFAB6220330C200C683EB /* YoutubeDL */,
+				EEAEFACB2203313100C683EB /* macOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		EEAEFAB5220330C200C683EB /* Resources */ = {
+		EEAEFACA2203313100C683EB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEAEFABD220330C400C683EB /* Assets.xcassets in Resources */,
-				EEAEFAC0220330C400C683EB /* MainMenu.xib in Resources */,
+				EEAEFAD12203313200C683EB /* Assets.xcassets in Resources */,
+				EEAEFAD42203313200C683EB /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		EEAEFAB3220330C200C683EB /* Sources */ = {
+		EEAEFAC82203313100C683EB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEAEFABB220330C200C683EB /* AppDelegate.swift in Sources */,
+				EEAEFACF2203313100C683EB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		EEAEFABE220330C400C683EB /* MainMenu.xib */ = {
+		EEAEFAD22203313200C683EB /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				EEAEFABF220330C400C683EB /* Base */,
+				EEAEFAD32203313200C683EB /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -263,7 +263,7 @@
 			};
 			name = Release;
 		};
-		EEAEFAC6220330C400C683EB /* Debug */ = {
+		EEAEFAD82203313200C683EB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -277,12 +277,12 @@
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.0bmxa.YoutubeDL;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = YoutubeDL;
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
-		EEAEFAC7220330C400C683EB /* Release */ = {
+		EEAEFAD92203313200C683EB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -296,7 +296,7 @@
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.0bmxa.YoutubeDL;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = YoutubeDL;
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
@@ -313,11 +313,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EEAEFAC5220330C400C683EB /* Build configuration list for PBXNativeTarget "YoutubeDL" */ = {
+		EEAEFAD72203313200C683EB /* Build configuration list for PBXNativeTarget "macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EEAEFAC6220330C400C683EB /* Debug */,
-				EEAEFAC7220330C400C683EB /* Release */,
+				EEAEFAD82203313200C683EB /* Debug */,
+				EEAEFAD92203313200C683EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
