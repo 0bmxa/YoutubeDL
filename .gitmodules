@@ -1,0 +1,3 @@
+[submodule "external/youtube-dl"]
+	path = external/youtube-dl
+	url = git@github.com:rg3/youtube-dl.git
