@@ -12,6 +12,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
+    let youtubeDL = YoutubeDL()
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
