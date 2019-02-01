@@ -35,7 +35,7 @@
 		EEAEFAAE220330C200C683EB = {
 			isa = PBXGroup;
 			children = (
-				EEAEFACD2203313100C683EB /* YoutubeDL */,
+				EEAEFACD2203313100C683EB /* macOS */,
 				EEAEFAB8220330C200C683EB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,7 +48,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EEAEFACD2203313100C683EB /* YoutubeDL */ = {
+		EEAEFACD2203313100C683EB /* macOS */ = {
 			isa = PBXGroup;
 			children = (
 				EEAEFACE2203313100C683EB /* AppDelegate.swift */,
@@ -57,7 +57,7 @@
 				EEAEFAD52203313200C683EB /* Info.plist */,
 				EEAEFAD62203313200C683EB /* YoutubeDL.entitlements */,
 			);
-			path = YoutubeDL;
+			path = macOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,16 +267,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = YoutubeDL/YoutubeDL.entitlements;
+				CODE_SIGN_ENTITLEMENTS = macOS/YoutubeDL.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = JGMFM42JM6;
-				INFOPLIST_FILE = YoutubeDL/Info.plist;
+				DSTROOT = /;
+				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.0bmxa.YoutubeDL;
+				PRODUCT_BUNDLE_IDENTIFIER = com.0bmxa.YoutubeDL.macOS;
 				PRODUCT_NAME = YoutubeDL;
 				SWIFT_VERSION = 4.2;
 			};
@@ -286,16 +287,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = YoutubeDL/YoutubeDL.entitlements;
+				CODE_SIGN_ENTITLEMENTS = macOS/YoutubeDL.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = JGMFM42JM6;
-				INFOPLIST_FILE = YoutubeDL/Info.plist;
+				DSTROOT = /;
+				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.0bmxa.YoutubeDL;
+				PRODUCT_BUNDLE_IDENTIFIER = com.0bmxa.YoutubeDL.macOS;
 				PRODUCT_NAME = YoutubeDL;
 				SWIFT_VERSION = 4.2;
 			};
