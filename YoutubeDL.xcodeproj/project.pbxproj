@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		EE50F19122047DDE0088B7EB /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE50F19022047DDE0088B7EB /* Python.framework */; };
 		EE50F193220485080088B7EB /* youtube-dl in Copy Python Sources */ = {isa = PBXBuildFile; fileRef = EE50F192220485080088B7EB /* youtube-dl */; };
+		EE50F1A0220485D00088B7EB /* Python.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F198220485D00088B7EB /* Python.swift */; };
+		EE50F1A1220485D00088B7EB /* BaseTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F199220485D00088B7EB /* BaseTypes.swift */; };
+		EE50F1A2220485D00088B7EB /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F19A220485D00088B7EB /* Module.swift */; };
+		EE50F1A3220485D00088B7EB /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F19B220485D00088B7EB /* Tools.swift */; };
+		EE50F1A4220485D00088B7EB /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F19D220485D00088B7EB /* Options.swift */; };
+		EE50F1A5220485D00088B7EB /* YoutubeDLBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F19E220485D00088B7EB /* YoutubeDLBridge.swift */; };
+		EE50F1A6220485D00088B7EB /* YoutubeDL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F19F220485D00088B7EB /* YoutubeDL.swift */; };
 		EEAEFACF2203313100C683EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAEFACE2203313100C683EB /* AppDelegate.swift */; };
 		EEAEFAD12203313200C683EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEAEFAD02203313200C683EB /* Assets.xcassets */; };
 		EEAEFAD42203313200C683EB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEAEFAD22203313200C683EB /* MainMenu.xib */; };
@@ -31,6 +38,13 @@
 /* Begin PBXFileReference section */
 		EE50F19022047DDE0088B7EB /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = System/Library/Frameworks/Python.framework; sourceTree = SDKROOT; };
 		EE50F192220485080088B7EB /* youtube-dl */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "youtube-dl"; path = "external/youtube-dl"; sourceTree = "<group>"; };
+		EE50F198220485D00088B7EB /* Python.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Python.swift; sourceTree = "<group>"; };
+		EE50F199220485D00088B7EB /* BaseTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTypes.swift; sourceTree = "<group>"; };
+		EE50F19A220485D00088B7EB /* Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
+		EE50F19B220485D00088B7EB /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
+		EE50F19D220485D00088B7EB /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		EE50F19E220485D00088B7EB /* YoutubeDLBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeDLBridge.swift; sourceTree = "<group>"; };
+		EE50F19F220485D00088B7EB /* YoutubeDL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeDL.swift; sourceTree = "<group>"; };
 		EEAEFACC2203313100C683EB /* YoutubeDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoutubeDL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEAEFACE2203313100C683EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEAEFAD02203313200C683EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,9 +73,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EE50F196220485D00088B7EB /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				EE50F197220485D00088B7EB /* Python */,
+				EE50F19C220485D00088B7EB /* YoutubeDL */,
+				EE50F19B220485D00088B7EB /* Tools.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		EE50F197220485D00088B7EB /* Python */ = {
+			isa = PBXGroup;
+			children = (
+				EE50F198220485D00088B7EB /* Python.swift */,
+				EE50F199220485D00088B7EB /* BaseTypes.swift */,
+				EE50F19A220485D00088B7EB /* Module.swift */,
+			);
+			path = Python;
+			sourceTree = "<group>";
+		};
+		EE50F19C220485D00088B7EB /* YoutubeDL */ = {
+			isa = PBXGroup;
+			children = (
+				EE50F19D220485D00088B7EB /* Options.swift */,
+				EE50F19E220485D00088B7EB /* YoutubeDLBridge.swift */,
+				EE50F19F220485D00088B7EB /* YoutubeDL.swift */,
+			);
+			path = YoutubeDL;
+			sourceTree = "<group>";
+		};
 		EEAEFAAE220330C200C683EB = {
 			isa = PBXGroup;
 			children = (
+				EE50F196220485D00088B7EB /* Shared */,
 				EEAEFACD2203313100C683EB /* macOS */,
 				EE50F192220485080088B7EB /* youtube-dl */,
 				EEAEFAB8220330C200C683EB /* Products */,
@@ -161,6 +206,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEAEFACF2203313100C683EB /* AppDelegate.swift in Sources */,
+				EE50F1A5220485D00088B7EB /* YoutubeDLBridge.swift in Sources */,
+				EE50F1A2220485D00088B7EB /* Module.swift in Sources */,
+				EE50F1A1220485D00088B7EB /* BaseTypes.swift in Sources */,
+				EE50F1A0220485D00088B7EB /* Python.swift in Sources */,
+				EE50F1A4220485D00088B7EB /* Options.swift in Sources */,
+				EE50F1A3220485D00088B7EB /* Tools.swift in Sources */,
+				EE50F1A6220485D00088B7EB /* YoutubeDL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
