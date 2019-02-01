@@ -7,12 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE50F19122047DDE0088B7EB /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE50F19022047DDE0088B7EB /* Python.framework */; };
+		EE50F193220485080088B7EB /* youtube-dl in Copy Python Sources */ = {isa = PBXBuildFile; fileRef = EE50F192220485080088B7EB /* youtube-dl */; };
 		EEAEFACF2203313100C683EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAEFACE2203313100C683EB /* AppDelegate.swift */; };
 		EEAEFAD12203313200C683EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEAEFAD02203313200C683EB /* Assets.xcassets */; };
 		EEAEFAD42203313200C683EB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEAEFAD22203313200C683EB /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		EEAEFAF32203552800C683EB /* Copy Python Sources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = python_libs;
+			dstSubfolderSpec = 7;
+			files = (
+				EE50F193220485080088B7EB /* youtube-dl in Copy Python Sources */,
+			);
+			name = "Copy Python Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		EE50F19022047DDE0088B7EB /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = System/Library/Frameworks/Python.framework; sourceTree = SDKROOT; };
+		EE50F192220485080088B7EB /* youtube-dl */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "youtube-dl"; path = "external/youtube-dl"; sourceTree = "<group>"; };
 		EEAEFACC2203313100C683EB /* YoutubeDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoutubeDL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEAEFACE2203313100C683EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEAEFAD02203313200C683EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -26,17 +44,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE50F19122047DDE0088B7EB /* Python.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE50F18F22047DDE0088B7EB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EE50F19022047DDE0088B7EB /* Python.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EEAEFAAE220330C200C683EB = {
 			isa = PBXGroup;
 			children = (
 				EEAEFACD2203313100C683EB /* macOS */,
+				EE50F192220485080088B7EB /* youtube-dl */,
 				EEAEFAB8220330C200C683EB /* Products */,
+				EE50F18F22047DDE0088B7EB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +99,7 @@
 				EEAEFAC82203313100C683EB /* Sources */,
 				EEAEFAC92203313100C683EB /* Frameworks */,
 				EEAEFACA2203313100C683EB /* Resources */,
+				EEAEFAF32203552800C683EB /* Copy Python Sources */,
 			);
 			buildRules = (
 			);
