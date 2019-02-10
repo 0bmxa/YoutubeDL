@@ -6,12 +6,14 @@
 //  Copyright © 2018 0bmxa. All rights reserved.
 //
 
-//import Foundation
+import Foundation
 
 class YoutubeDL {
     init() {
         let youtubeDL = YoutubeDLBridge()
-        youtubeDL.downloadVideo(url: "https://www.youtube.com/watch?v=BaW_jenozKc", format: "bestaudio", to: "nil")
+
+        let url = URL(string: "https://www.youtube.com/watch?v=BaW_jenozKc")!
+        youtubeDL.downloadVideo(from: url, formatID: "bestaudio", to: "nil")
     }
     
     
