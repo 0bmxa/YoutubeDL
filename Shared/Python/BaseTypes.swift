@@ -19,11 +19,6 @@ extension Python {
             self.pyObject = withUnsafeMutablePointer(to: &_Py_NoneStruct) { $0 }
             Py_IncRef(self.pyObject)
         }
-        
-        static func isNone(object: PythonObjectPointer) -> Swift.Bool {
-            let nonePointer: PythonObjectPointer = withUnsafeMutablePointer(to: &_Py_NoneStruct) { $0 }
-            return object == nonePointer
-        }
     }
     
     class Bool: PythonRepresentable, PythonSwiftConvertible {
@@ -239,42 +234,30 @@ func PyList_SET_ITEM(op: PythonObjectPointer, i: Py_ssize_t, v: PythonObjectPoin
 */
 
 extension Python {
-    static func type(of pyObject: PythonObjectPointer) -> PythonRepresentable.Type {
-        let tpFlags = pyObject.pointee.ob_type.pointee.tp_flags
-
-        if tpFlags & Py_TPFLAGS_INT_SUBCLASS != 0 {
-            return Python.Int.self
-        } else if tpFlags & Py_TPFLAGS_UNICODE_SUBCLASS != 0 {
-            return Python.UnicodeString.self
-        } else if tpFlags & Py_TPFLAGS_STRING_SUBCLASS != 0 {
-            return Python.String.self
-        } else if tpFlags & Py_TPFLAGS_LIST_SUBCLASS   != 0 {
-            return Python.List.self
-        } else if tpFlags & Py_TPFLAGS_TUPLE_SUBCLASS  != 0 {
-            return Python.Tuple.self
-        } else if tpFlags & Py_TPFLAGS_DICT_SUBCLASS   != 0 {
-            return Python.Dict.self
-        } else if Python.None.isNone(object: pyObject) {
+    static func type(of pyObject: PythonObjectPointer) -> PythonRepresentable.Type? {
+        if pyObject == &_Py_NoneStruct {
             return Python.None.self
-        } else {
-            // Unsupported:
-            // - "None" !?!
-            // - Py_TPFLAGS_LONG_SUBCLASS,
-            // - Py_TPFLAGS_STRING_SUBCLASS
-            // - Py_TPFLAGS_BASE_EXC_SUBCLASS
-            // - Py_TPFLAGS_TYPE_SUBCLASS
-            if tpFlags & Py_TPFLAGS_LONG_SUBCLASS != 0 {
-                fatalError()
-//            } else if tpFlags & Py_TPFLAGS_STRING_SUBCLASS != 0 {
-//                fatalError()
-            } else if tpFlags & Py_TPFLAGS_BASE_EXC_SUBCLASS != 0 {
-                fatalError()
-            } else if tpFlags & Py_TPFLAGS_TYPE_SUBCLASS != 0 {
-                fatalError()
-            }
-            fatalError()
         }
         
+
+        
+        let objectType = pyObject.pointee.ob_type
+        switch objectType {
+        case &PyBool_Type:    return Python.Bool.self
+        case &PyDict_Type:    return Python.Dict.self
+        case &PyList_Type:    return Python.List.self
+        case &PyInt_Type:     return Python.Int.self
+        case &PyString_Type:  return Python.String.self
+        case &PyTuple_Type:   return Python.Tuple.self
+        case &PyUnicode_Type: return Python.UnicodeString.self
+        case &PyFloat_Type:   return Python.Float.self
+            
+        default:
+            let name = Swift.String(cString: pyObject.pointee.ob_type.pointee.tp_name!)
+            dprint("Type not supported:", name)
+            assertionFailure()
+            return nil
+        }
     }
 }
 
