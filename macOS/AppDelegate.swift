@@ -16,7 +16,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+
+        let url = URL(string: "https://www.youtube.com/watch?v=BaW_jenozKc")!
+        self.youtubeDL.downloadVideo(from: url, formatID: "bestaudio", to: "nil")
+
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

@@ -12,13 +12,12 @@
 		EE50F1A1220485D00088B7EB /* BaseTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F199220485D00088B7EB /* BaseTypes.swift */; };
 		EE50F1A2220485D00088B7EB /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F19A220485D00088B7EB /* Module.swift */; };
 		EE50F1A3220485D00088B7EB /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F19B220485D00088B7EB /* Tools.swift */; };
-		EE50F1A4220485D00088B7EB /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F19D220485D00088B7EB /* Options.swift */; };
 		EE50F1A5220485D00088B7EB /* YoutubeDLBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F19E220485D00088B7EB /* YoutubeDLBridge.swift */; };
-		EE50F1A6220485D00088B7EB /* YoutubeDL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F19F220485D00088B7EB /* YoutubeDL.swift */; };
 		EE50F1A92204CEA50088B7EB /* youtube_dl in Copy Python Sources */ = {isa = PBXBuildFile; fileRef = EE50F1A72204CE970088B7EB /* youtube_dl */; };
 		EEAEFACF2203313100C683EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAEFACE2203313100C683EB /* AppDelegate.swift */; };
 		EEAEFAD12203313200C683EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEAEFAD02203313200C683EB /* Assets.xcassets */; };
 		EEAEFAD42203313200C683EB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEAEFAD22203313200C683EB /* MainMenu.xib */; };
+		EECAA1032210882E00590BDD /* Formats.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECAA1022210882E00590BDD /* Formats.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,7 +42,6 @@
 		EE50F19B220485D00088B7EB /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		EE50F19D220485D00088B7EB /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		EE50F19E220485D00088B7EB /* YoutubeDLBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeDLBridge.swift; sourceTree = "<group>"; };
-		EE50F19F220485D00088B7EB /* YoutubeDL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeDL.swift; sourceTree = "<group>"; };
 		EE50F1A72204CE970088B7EB /* youtube_dl */ = {isa = PBXFileReference; lastKnownFileType = folder; name = youtube_dl; path = "external/youtube-dl/youtube_dl"; sourceTree = "<group>"; };
 		EEAEFACC2203313100C683EB /* YoutubeDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoutubeDL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEAEFACE2203313100C683EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +49,7 @@
 		EEAEFAD32203313200C683EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		EEAEFAD52203313200C683EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EEAEFAD62203313200C683EB /* YoutubeDL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YoutubeDL.entitlements; sourceTree = "<group>"; };
+		EECAA1022210882E00590BDD /* Formats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formats.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +97,7 @@
 			children = (
 				EE50F19D220485D00088B7EB /* Options.swift */,
 				EE50F19E220485D00088B7EB /* YoutubeDLBridge.swift */,
-				EE50F19F220485D00088B7EB /* YoutubeDL.swift */,
+				EECAA1022210882E00590BDD /* Formats.swift */,
 			);
 			path = YoutubeDL;
 			sourceTree = "<group>";
@@ -209,10 +208,9 @@
 				EE50F1A5220485D00088B7EB /* YoutubeDLBridge.swift in Sources */,
 				EE50F1A2220485D00088B7EB /* Module.swift in Sources */,
 				EE50F1A1220485D00088B7EB /* BaseTypes.swift in Sources */,
+				EECAA1032210882E00590BDD /* Formats.swift in Sources */,
 				EE50F1A0220485D00088B7EB /* Python.swift in Sources */,
-				EE50F1A4220485D00088B7EB /* Options.swift in Sources */,
 				EE50F1A3220485D00088B7EB /* Tools.swift in Sources */,
-				EE50F1A6220485D00088B7EB /* YoutubeDL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
