@@ -167,17 +167,19 @@ extension Python {
         // MARK: - PythonSwiftConvertible
         typealias SwiftType = [Swift.String: PythonRepresentable]
         var swiftValue: SwiftType? {
-//            fatalError("Not implemented")
-
-            guard let keysPointer = PyDict_Keys(self.pyObject) else { assertionFailure(); return nil }
-            guard let keys = Python.List(raw: keysPointer)     else { assertionFailure(); return nil }
+            guard
+                let keysPointer = PyDict_Keys(self.pyObject),
+                let keys = Python.List(raw: keysPointer)
+            else { assertionFailure(); return nil }
             
             var swiftDict = SwiftType()
-            
-            for i in (0..<keys.count) {
-                let pyKey = Python.UnicodeString(raw: keys[i].pyObject)!
-                let val = self[pyKey]
-                swiftDict[pyKey.swiftValue] = val
+            for index in (0..<keys.count) {
+                guard
+                    let key = keys[index],
+                    let keyString = Python.UnicodeString(raw: key.pyObject)
+                else { assertionFailure(); continue }
+                let val = self[keyString]
+                swiftDict[keyString.swiftValue] = val
             }
             
             return swiftDict
@@ -188,11 +190,12 @@ extension Python {
             return self[pyKey]
         }
 
-        subscript(key: Python.UnicodeString) -> PythonRepresentable! {
-            let pyItem = PyDict_GetItem(self.pyObject, key.pyObject)!
+        subscript(key: Python.UnicodeString) -> PythonRepresentable? {
+            guard let pyItem = PyDict_GetItem(self.pyObject, key.pyObject) else {
+                assertionFailure(); return nil
+            }
             let pyItemType = Python.type(of: pyItem)
-            let item = pyItemType.init(raw: pyItem)!
-            return item
+            return pyItemType?.init(raw: pyItem)
         }
     }
     
@@ -217,24 +220,25 @@ extension Python {
             return PyList_Size(self.pyObject)
         }
         
-        subscript(index: Swift.Int) -> PythonRepresentable! {
-            let pyItem = PyList_GetItem(self.pyObject, index)!
+        subscript(index: Swift.Int) -> PythonRepresentable? {
+            guard let pyItem = PyList_GetItem(self.pyObject, index) else {
+                assertionFailure(); return nil
+            }
             let pyItemType = Python.type(of: pyItem)
-            let item = pyItemType.init(raw: pyItem)!
-            return item
+            return pyItemType?.init(raw: pyItem)!
         }
         
         // MARK: - PythonSwiftConvertible
-        typealias SwiftType = [PythonRepresentable]
+        typealias SwiftType = [PythonRepresentable?]
         var swiftValue: SwiftType {
             let length = PyList_Size(self.pyObject)
-            let array = (0..<length).reduce(SwiftType()) { (previous, index) in
-                guard let pyItem = PyList_GetItem(self.pyObject, index) else { assertionFailure(); return previous }
+            let indices = (0..<length)
+            
+            return indices.map { index -> PythonRepresentable? in
+                guard let pyItem = PyList_GetItem(self.pyObject, index) else { assertionFailure(); return nil }
                 let pyItemType = Python.type(of: pyItem)
-                guard let item = pyItemType.init(raw: pyItem) else { assertionFailure(); return previous }
-                return previous + [item]
+                return pyItemType?.init(raw: pyItem)
             }
-            return array
         }
     }
 }
