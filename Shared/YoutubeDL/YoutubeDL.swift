@@ -36,14 +36,14 @@ struct YoutubeDL {
             fatalError()
         }
         
-        let pURL = Python.String(pageURL)
-        let pDownload = Python.Bool(false)
-        let pIEKey = Python.None()
-        let pExtraInfo = Python.Dict([:])
-        let pProcess = Python.Bool(false)
-        let pForceGenericExtractor = Python.Bool(false)
+        let argURL = Python.String(pageURL)
+        let argDownload = Python.Bool(false)
+        let argIEKey = Python.None()
+        let argExtraInfo = Python.Dict([:])
+        let argProcess = Python.Bool(false)
+        let argForceGenericExtractor = Python.Bool(false)
 
-        let pyVideoInfo: Python.Dict? = extractInfoFunction.call(with: pURL, pDownload, pIEKey, pExtraInfo, pProcess, pForceGenericExtractor)
+        let pyVideoInfo: Python.Dict? = extractInfoFunction.call(with: argURL, argDownload, argIEKey, argExtraInfo, argProcess, argForceGenericExtractor)
         return pyVideoInfo?.swiftValue
     }
     
@@ -61,7 +61,7 @@ struct YoutubeDL {
         return formats
     }
     
-    internal func downloadVideo(from url: URL, formatID: String, to destination: String) {
+    public func download(from url: URL, formatID: String, to destination: String) {
         // Get video info from youtube-dl for specified webpage
         guard let videoInfo = self.getVideoInfo(pageURL: url.absoluteString) else { fatalError() }
         
@@ -79,21 +79,4 @@ struct YoutubeDL {
 //        URL(string: matchedFormatURL)
 //        dprint(url)
     }
-
-
-    
-//    func testCSwiftAPIUsage() {
-//        let apiTestModule = Python.Module(name: "c_api_test")!
-//        let function = apiTestModule.function(name: "dump_var")!
-//
-//        let testCallResult: Python.String? = function.call(with: progressCallback)
-//        print(testCallResult!.description)
-//    }
 }
-
-//func progressCallback(a: PythonObjectPointer?, b: PythonObjectPointer?) -> PythonObjectPointer? {
-//    dprint("a", Python.String(raw: PyObject_Repr(a)!)!.swiftValue)
-//    dprint("b", Python.String(raw: PyObject_Repr(b)!)!.swiftValue)
-//
-//    return nil
-//}
