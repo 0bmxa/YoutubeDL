@@ -60,6 +60,26 @@ extension Python {
         }
     }
     
+    typealias Double = Float
+    class Float: PythonRepresentable, PythonSwiftConvertible {
+        let pyObject: PythonObjectPointer
+        required init?(raw: PythonObjectPointer) {
+            self.pyObject = raw
+            Py_IncRef(self.pyObject)
+        }
+        deinit { Py_DecRef(self.pyObject) }
+        
+        init(_ swiftDouble: Swift.Double) {
+            self.pyObject = PyFloat_FromDouble(swiftDouble)
+        }
+        
+        // MARK: - PythonSwiftConvertible
+        typealias SwiftType = Swift.Double
+        var swiftValue: SwiftType {
+            return PyFloat_AsDouble(self.pyObject)
+        }
+    }
+
     class String: PythonRepresentable, PythonSwiftConvertible {
         let pyObject: PythonObjectPointer
         required init?(raw: PythonObjectPointer) {
