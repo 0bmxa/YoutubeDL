@@ -78,6 +78,11 @@ extension Python {
         var swiftValue: SwiftType {
             return PyFloat_AsDouble(self.pyObject)
         }
+        
+        var swiftFloatValue: Swift.Float {
+            return Swift.Float(self.swiftValue)
+        }
+        
     }
 
     class String: PythonRepresentable, PythonSwiftConvertible {
