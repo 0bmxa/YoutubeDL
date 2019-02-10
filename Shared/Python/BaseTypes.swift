@@ -99,10 +99,6 @@ extension Python {
             let cString = PyString_AsString(self.pyObject)!
             return Swift.String(cString: cString)
         }
-        
-        var description: Swift.String {
-            return "Python.String(\(self.swiftValue))"
-        }
     }
     
     class UnicodeString: PythonRepresentable, PythonSwiftConvertible {
@@ -125,11 +121,8 @@ extension Python {
             let cString = PyString_AsString(pyString)!
             return Swift.String(cString: cString)
         }
-        
-        var description: Swift.String {
-            return "Python.String(\(self.swiftValue))"
-        }
-    }}
+    }
+}
 
 
 // MARK: - Collection types
@@ -281,20 +274,6 @@ extension Python {
     }
 }
 
-////// MARK: - Macros
-//extension Python {
-//    static func checkType(op: PythonObjectPointer, for typeFlag: Swift.Int) -> Bool {
-//        return (op.pointee.ob_type.pointee.tp_flags & typeFlag != 0)
-//    }
-//
-////    static func PyInt_Check(op: PythonObjectPointer) -> Bool {
-////        return PyType_HasFeature(op.pointee.ob_type, Py_TPFLAGS_INT_SUBCLASS)
-////    }
-////
-////    static func PyType_HasFeature(_ type: UnsafeMutablePointer<_typeobject>, _ flags: Swift.Int) -> Bool {
-////        return type.pointee.tp_flags & flags != 0
-////    }
-//}
 
 extension Python {
 //    typealias PyCFunction =

@@ -12,27 +12,15 @@ import Python
 struct YoutubeDLBridge {
     var module: Python.Module
     
-    init(pythonhomePath: String? = nil) {
-        if let pythonhomePath = pythonhomePath {
-            var path = pythonhomePath.utf8CString[0]
-            Py_SetPythonHome(&path)
-            dprint("Set PYTHONHOME to:", pythonhomePath)
-        }
-        
-        Py_Initialize() 
+    init() {
+        Python.initialize()
         dprint("Initialized Python", Python.version);
         
-//        let resourcePath = Bundle.main.resourcePath as NSString?
-//        let modulePath = resourcePath?.appendingPathComponent("python_libs")
-        guard let modulePath = Bundle.main.resourcePath?.appending("/python_libs") else {
-            fatalError()
-        }
+        guard let resourcePath = Bundle.main.resourcePath else { fatalError() }
+        let modulePath = resourcePath.appending("/python_libs")
         
         var pathAppendPyCode = "import sys\n"
         pathAppendPyCode += "sys.path.append('\(modulePath)')\n"
-//        pathAppendPyCode += "print(sys.path)\n"
-        pathAppendPyCode += "import youtube_dl\n"
-        pathAppendPyCode += "print(youtube_dl)\n"
         Python.Run.string(pathAppendPyCode)
 
         guard let module = Python.Module(name: "youtube_dl") else { fatalError() }
