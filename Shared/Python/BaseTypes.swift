@@ -12,7 +12,7 @@ import Python
 extension Python {
     class None: PythonRepresentable {
         var pyObject: PythonObjectPointer
-        required init?(raw: PythonObjectPointer) { self.pyObject = raw }
+        required convenience init?(raw: PythonObjectPointer) { self.init() }
         deinit { Py_DecRef(self.pyObject) }
         
         init() {
@@ -28,7 +28,10 @@ extension Python {
     
     class Bool: PythonRepresentable, PythonSwiftConvertible {
         let pyObject: PythonObjectPointer
-        required init?(raw: PythonObjectPointer) { self.pyObject = raw }
+        required init?(raw: PythonObjectPointer) {
+            self.pyObject = raw
+            Py_IncRef(self.pyObject)
+        }
         deinit { Py_DecRef(self.pyObject) }
         
         init(_ swiftBool: Swift.Bool) {
@@ -45,7 +48,10 @@ extension Python {
     
     class Int: PythonRepresentable, PythonSwiftConvertible {
         let pyObject: PythonObjectPointer
-        required init?(raw: PythonObjectPointer) { self.pyObject = raw }
+        required init?(raw: PythonObjectPointer) {
+            self.pyObject = raw
+            Py_IncRef(self.pyObject)
+        }
         deinit { Py_DecRef(self.pyObject) }
         
         init(_ swiftInt: Swift.Int) {
@@ -115,7 +121,10 @@ extension Python {
 extension Python {
     class Tuple: PythonRepresentable {
         let pyObject: PythonObjectPointer
-        required init?(raw: PythonObjectPointer) { self.pyObject = raw }
+        required init?(raw: PythonObjectPointer) {
+            self.pyObject = raw
+            Py_IncRef(self.pyObject)
+        }
         deinit { Py_DecRef(self.pyObject) }
         
         convenience init() {
@@ -133,7 +142,10 @@ extension Python {
     
     class Dict: PythonRepresentable, PythonSwiftOptionalConvertible {
         let pyObject: PythonObjectPointer
-        required init?(raw: PythonObjectPointer) { self.pyObject = raw }
+        required init?(raw: PythonObjectPointer) {
+            self.pyObject = raw
+            Py_IncRef(self.pyObject)
+        }
         deinit { Py_DecRef(self.pyObject) }
         
         init(_ values: [Swift.String: PythonRepresentable]) {
@@ -179,7 +191,10 @@ extension Python {
     typealias Array = List
     class List: PythonRepresentable, PythonSwiftConvertible {
         let pyObject: PythonObjectPointer
-        required init?(raw: PythonObjectPointer) { self.pyObject = raw }
+        required init?(raw: PythonObjectPointer) {
+            self.pyObject = raw
+            Py_IncRef(self.pyObject)
+        }
         deinit { Py_DecRef(self.pyObject) }
         
         init(_ values: [PythonRepresentable]) {
