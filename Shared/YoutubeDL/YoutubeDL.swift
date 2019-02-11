@@ -27,7 +27,7 @@ struct YoutubeDL {
         self.module = module
     }
     
-    internal func getVideoInfo(pageURL: String) -> [String: PythonRepresentable]? {
+    internal func getVideoInfo(pageURL: URL) -> VideoInfo? {
         guard
             let submodule = self.module.submodule(name: "YoutubeDL"),
             let extractInfoFunction = submodule.function(name: "extract_info")
@@ -36,7 +36,7 @@ struct YoutubeDL {
             fatalError()
         }
         
-        let argURL = Python.String(pageURL)
+        let argURL = Python.String(pageURL.absoluteString)
         let argDownload = Python.Bool(false)
         let argIEKey = Python.None()
         let argExtraInfo = Python.Dict([:])
@@ -44,39 +44,12 @@ struct YoutubeDL {
         let argForceGenericExtractor = Python.Bool(false)
 
         let pyVideoInfo: Python.Dict? = extractInfoFunction.call(with: argURL, argDownload, argIEKey, argExtraInfo, argProcess, argForceGenericExtractor)
-        return pyVideoInfo?.swiftValue
-    }
-    
-    private func getFormats(from videoInfo: [String: PythonRepresentable]) -> [YoutubeDL.Format]? {
-        // Get formats list from video info as Swift array
-        let pyVideoFormatsList = videoInfo["formats"] as? Python.List
-        let videoFormatsDicts = pyVideoFormatsList?.swiftValue as? [Python.Dict]
         
-        // Convert to format structures
-        let formats: [YoutubeDL.Format]? = videoFormatsDicts?.compactMap {
-            guard let dict = $0.swiftValue else { assertionFailure(); return nil }
-            return YoutubeDL.Format(dict)
+        if let pyVideoInfo = pyVideoInfo {
+            return VideoInfo(pyVideoInfo)
         }
         
-        return formats
-    }
-    
-    public func download(from url: URL, formatID: String, to destination: String) {
-        // Get video info from youtube-dl for specified webpage
-        guard let videoInfo = self.getVideoInfo(pageURL: url.absoluteString) else { fatalError() }
-        
-        let formats = self.getFormats(from: videoInfo)
-        
-        formats?.forEach{
-            Swift.print("Format", $0.name!, "(", $0.fileExt!, ")\thas ID:", $0.formatID!)
-        }
-        
-//        // Find requested format
-//        let matchedFormat = formats?.first { $0.formatID == formatID }
-//
-//        // Return URL, if found
-//        guard let matchedFormatURL = matchedFormat?.url else { return nil }
-//        URL(string: matchedFormatURL)
-//        dprint(url)
+        assertionFailure();
+        return nil
     }
 }
