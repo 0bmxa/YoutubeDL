@@ -41,7 +41,6 @@
 		EE50F199220485D00088B7EB /* BaseTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTypes.swift; sourceTree = "<group>"; };
 		EE50F19A220485D00088B7EB /* Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		EE50F19B220485D00088B7EB /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
-		EE50F19D220485D00088B7EB /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		EE50F19E220485D00088B7EB /* YoutubeDL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeDL.swift; sourceTree = "<group>"; };
 		EE50F1A72204CE970088B7EB /* youtube_dl */ = {isa = PBXFileReference; lastKnownFileType = folder; name = youtube_dl; path = "external/youtube-dl/youtube_dl"; sourceTree = "<group>"; };
 		EEAEFACC2203313100C683EB /* YoutubeDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoutubeDL.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,7 +99,6 @@
 				EE50F19E220485D00088B7EB /* YoutubeDL.swift */,
 				EECAA1022210882E00590BDD /* Formats.swift */,
 				EECAA1042210C6B200590BDD /* VideoInfo.swift */,
-				EE50F19D220485D00088B7EB /* Options.swift */,
 			);
 			path = YoutubeDL;
 			sourceTree = "<group>";
