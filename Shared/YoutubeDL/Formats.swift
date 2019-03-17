@@ -1,6 +1,6 @@
 //
 //  Formats.swift
-//  macOS
+//  YoutubeDL
 //
 //  Created by mxa on 10.02.2019.
 //  Copyright © 2019 0bmxa. All rights reserved.
@@ -45,7 +45,7 @@ extension YoutubeDL {
 
 // MARK: - A/V Encoding & Codecs
 extension YoutubeDL.Format {
-    enum Encoding: CustomStringConvertible {
+    enum Encoding {
         case audioVideo(audio: Codec, video: Codec)
         case audioOnly(Codec)
         case videoOnly(Codec)
@@ -70,31 +70,11 @@ extension YoutubeDL.Format {
                 self = .none
             }
         }
-        
-        var description: String {
-            switch self {
-            case .audioVideo(let audio, let video):
-                return "V: " + video.description + ", A: " + audio.description
-            case .audioOnly(let audio):
-                return "Audio only: " + audio.description
-            case .videoOnly(let video):
-                return "Video only: " + video.description
-            case .none:
-                return "No codec"
-            }
-        }
     }
     
-    
-    struct Codec: CustomStringConvertible {
+    struct Codec {
         let name: String
         let bitrate: Float? // probably kBit/s
-        
-        var description: String {
-            guard let bitrate = self.bitrate else { return self.name }
-            let brString = String(format: "%.0f", bitrate)
-            return self.name + " (\(brString) kb/s)"
-        }
     }
 }
 

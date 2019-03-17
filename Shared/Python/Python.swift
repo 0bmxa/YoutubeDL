@@ -1,6 +1,6 @@
 //
-//  Py.swift
-//  YoutubeDL
+//  Python.swift
+//  SwiftPython
 //
 //  Created by mxa on 23.09.2018.
 //  Copyright © 2018 0bmxa. All rights reserved.
@@ -8,18 +8,8 @@
 
 import Python
 
-typealias PythonObjectPointer = UnsafeMutablePointer<PyObject>
-
+/// A new "Python" namespace
 enum Python {
-    enum Run {
-        @discardableResult
-        static func string(_ pythonCodeString: Swift.String) -> Int32 {
-            let cString = pythonCodeString.withCString { $0 }
-            let compilerFlags: UnsafeMutablePointer<PyCompilerFlags>! = nil
-            return PyRun_SimpleStringFlags(cString, compilerFlags)
-        }
-    }
-    
     static var version: Swift.String {
         return Swift.String(cString: Py_GetVersion())
     }
@@ -27,37 +17,16 @@ enum Python {
     static func initialize() {
         Py_Initialize()
     }
-}
+    
 
-
-
-protocol PythonRepresentable: CustomStringConvertible {
-    var pyObject: PythonObjectPointer { get }
-    init?(raw: PythonObjectPointer)
-}
-
-// MARK: - CustomStringConvertible
-extension PythonRepresentable {
-    var description: Swift.String {
-        let optionalPyObject: PythonObjectPointer? = self.pyObject
-        guard let pyObject = optionalPyObject else {
-            return "nil"
-        }
-        let stringRep = PyObject_Repr(pyObject)!
-        let content = Python.String(raw: stringRep)!.swiftValue
-        let name = "Python.\(type(of: self))"
-        return name + ": " + content
+    /// Executes Python code passed as string in the main module.
+    ///
+    /// - Parameter string: The string to be executed as Python code.
+    /// - Returns: 0 on success, -1 otherwise.
+    @discardableResult
+    static func run(string pythonCodeString: Swift.String) -> Int32 {
+        let cString = pythonCodeString.withCString { $0 }
+        let compilerFlags: UnsafeMutablePointer<PyCompilerFlags>! = nil
+        return PyRun_SimpleStringFlags(cString, compilerFlags)
     }
 }
-
-protocol PythonSwiftConvertible {
-    associatedtype SwiftType
-    var swiftValue: SwiftType { get }
-}
-
-protocol PythonSwiftOptionalConvertible {
-    associatedtype SwiftType
-    var swiftValue: SwiftType? { get }
-}
-
-

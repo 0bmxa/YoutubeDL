@@ -19,6 +19,8 @@
 		EEAEFAD42203313200C683EB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEAEFAD22203313200C683EB /* MainMenu.xib */; };
 		EECAA1032210882E00590BDD /* Formats.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECAA1022210882E00590BDD /* Formats.swift */; };
 		EECAA1052210C6B200590BDD /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECAA1042210C6B200590BDD /* VideoInfo.swift */; };
+		EED74222223E9E8F00020A24 /* Formats+Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED74220223E9DE800020A24 /* Formats+Debugging.swift */; };
+		EED74224223E9F2500020A24 /* BridgeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED74223223E9F2500020A24 /* BridgeTypes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +53,8 @@
 		EEAEFAD62203313200C683EB /* YoutubeDL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YoutubeDL.entitlements; sourceTree = "<group>"; };
 		EECAA1022210882E00590BDD /* Formats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formats.swift; sourceTree = "<group>"; };
 		EECAA1042210C6B200590BDD /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
+		EED74220223E9DE800020A24 /* Formats+Debugging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Formats+Debugging.swift"; sourceTree = "<group>"; };
+		EED74223223E9F2500020A24 /* BridgeTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				EE50F198220485D00088B7EB /* Python.swift */,
+				EED74223223E9F2500020A24 /* BridgeTypes.swift */,
 				EE50F199220485D00088B7EB /* BaseTypes.swift */,
 				EE50F19A220485D00088B7EB /* Module.swift */,
 			);
@@ -98,6 +103,7 @@
 			children = (
 				EE50F19E220485D00088B7EB /* YoutubeDL.swift */,
 				EECAA1022210882E00590BDD /* Formats.swift */,
+				EED74220223E9DE800020A24 /* Formats+Debugging.swift */,
 				EECAA1042210C6B200590BDD /* VideoInfo.swift */,
 			);
 			path = YoutubeDL;
@@ -216,6 +222,8 @@
 				EE50F1A1220485D00088B7EB /* BaseTypes.swift in Sources */,
 				EECAA1032210882E00590BDD /* Formats.swift in Sources */,
 				EECAA1052210C6B200590BDD /* VideoInfo.swift in Sources */,
+				EED74224223E9F2500020A24 /* BridgeTypes.swift in Sources */,
+				EED74222223E9E8F00020A24 /* Formats+Debugging.swift in Sources */,
 				EE50F1A0220485D00088B7EB /* Python.swift in Sources */,
 				EE50F1A3220485D00088B7EB /* Tools.swift in Sources */,
 			);

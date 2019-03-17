@@ -1,6 +1,6 @@
 //
-//  Primitives.swift
-//  YoutubeDL
+//  BaseTypes.swift
+//  SwiftPython
 //
 //  Created by mxa on 23.09.2018.
 //  Copyright © 2018 0bmxa. All rights reserved.

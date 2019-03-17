@@ -21,7 +21,7 @@ struct YoutubeDL {
         
         var pathAppendPyCode = "import sys\n"
         pathAppendPyCode += "sys.path.append('\(modulePath)')\n"
-        Python.Run.string(pathAppendPyCode)
+        Python.run(string: pathAppendPyCode)
 
         guard let module = Python.Module(name: "youtube_dl") else { fatalError() }
         self.module = module

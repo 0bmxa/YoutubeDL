@@ -1,6 +1,6 @@
 //
 //  VideoInfo.swift
-//  macOS
+//  YoutubeDL
 //
 //  Created by mxa on 10.02.2019.
 //  Copyright © 2019 0bmxa. All rights reserved.
