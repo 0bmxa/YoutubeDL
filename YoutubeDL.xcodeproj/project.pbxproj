@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EE50F19122047DDE0088B7EB /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE50F19022047DDE0088B7EB /* Python.framework */; };
+		EE25401523088385000A6701 /* Python2_7.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE25401423088385000A6701 /* Python2_7.framework */; };
 		EE50F1A0220485D00088B7EB /* Python.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F198220485D00088B7EB /* Python.swift */; };
 		EE50F1A1220485D00088B7EB /* BaseTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F199220485D00088B7EB /* BaseTypes.swift */; };
 		EE50F1A2220485D00088B7EB /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F19A220485D00088B7EB /* Module.swift */; };
@@ -38,7 +38,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		EE50F19022047DDE0088B7EB /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = System/Library/Frameworks/Python.framework; sourceTree = SDKROOT; };
+		EE25401423088385000A6701 /* Python2_7.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python2_7.framework; path = prebuilt/macOS/Python2_7.framework; sourceTree = "<group>"; };
 		EE50F198220485D00088B7EB /* Python.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Python.swift; sourceTree = "<group>"; };
 		EE50F199220485D00088B7EB /* BaseTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTypes.swift; sourceTree = "<group>"; };
 		EE50F19A220485D00088B7EB /* Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE50F19122047DDE0088B7EB /* Python.framework in Frameworks */,
+				EE25401523088385000A6701 /* Python2_7.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +72,7 @@
 		EE50F18F22047DDE0088B7EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EE50F19022047DDE0088B7EB /* Python.framework */,
+				EE25401423088385000A6701 /* Python2_7.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -367,6 +367,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = JGMFM42JM6;
 				DSTROOT = /;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/prebuilt/macOS",
+				);
 				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -387,6 +391,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = JGMFM42JM6;
 				DSTROOT = /;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/prebuilt/macOS",
+				);
 				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

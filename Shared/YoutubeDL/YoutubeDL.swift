@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Python
 
 struct YoutubeDL {
     var module: Python.Module

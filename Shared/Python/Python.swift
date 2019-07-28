@@ -6,7 +6,8 @@
 //  Copyright © 2018 0bmxa. All rights reserved.
 //
 
-import Python
+import Python2_7
+
 
 /// A new "Python" namespace
 enum Python {
