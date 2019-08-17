@@ -1,0 +1,460 @@
+framework module Python2_7 [system] [extern_c] {
+    umbrella header "Python.h"
+    
+    export *
+    module * { export * }
+    
+    explicit module PythonAst {
+        header "Python-ast.h"
+        export *
+    }
+
+    explicit module abstract {
+        header "abstract.h"
+        export *
+    }
+
+    explicit module asdl {
+        header "asdl.h"
+        export *
+    }
+
+    explicit module node {
+        header "node.h"
+        export *
+    }
+    
+    explicit module ast {
+        header "ast.h"
+        export *
+    }
+
+    explicit module bitset {
+        header "bitset.h"
+        export *
+    }
+
+    explicit module boolobject {
+        header "boolobject.h"
+        export *
+    }
+
+    explicit module bufferobject {
+        header "bufferobject.h"
+        export *
+    }
+
+    explicit module bytearrayobject {
+        header "bytearrayobject.h"
+        export *
+    }
+
+    explicit module bytes_methods {
+        header "bytes_methods.h"
+        export *
+    }
+
+    explicit module bytesobject {
+        header "bytesobject.h"
+        export *
+    }
+
+    explicit module cStringIO {
+        header "cStringIO.h"
+        export *
+    }
+
+    explicit module cellobject {
+        header "cellobject.h"
+        export *
+    }
+
+    explicit module ceval {
+        header "ceval.h"
+        export *
+    }
+
+    explicit module classobject {
+        header "classobject.h"
+        export *
+    }
+
+    explicit module cobject {
+        header "cobject.h"
+        export *
+    }
+
+    explicit module code {
+        header "code.h"
+        export *
+    }
+
+    explicit module codecs {
+        header "codecs.h"
+        export *
+    }
+
+    explicit module compile {
+        header "compile.h"
+        export *
+    }
+
+    explicit module complexobject {
+        header "complexobject.h"
+        export *
+    }
+
+    explicit module datetime {
+        header "datetime.h"
+        export *
+    }
+
+    explicit module descrobject {
+        header "descrobject.h"
+        export *
+    }
+
+    explicit module dictobject {
+        header "dictobject.h"
+        export *
+    }
+
+    explicit module dtoa {
+        header "dtoa.h"
+        export *
+    }
+
+    explicit module enumobject {
+        header "enumobject.h"
+        export *
+    }
+
+    explicit module errcode {
+        header "errcode.h"
+        export *
+    }
+
+    explicit module eval {
+        header "eval.h"
+        export *
+    }
+
+    explicit module fileobject {
+        header "fileobject.h"
+        export *
+    }
+
+    explicit module floatobject {
+        header "floatobject.h"
+        export *
+    }
+
+    explicit module frameobject {
+        header "frameobject.h"
+        export *
+    }
+
+    explicit module funcobject {
+        header "funcobject.h"
+        export *
+    }
+
+    explicit module genobject {
+        header "genobject.h"
+        export *
+    }
+
+    explicit module graminit {
+        header "graminit.h"
+        export *
+    }
+
+    explicit module grammar {
+        header "grammar.h"
+        export *
+    }
+
+    explicit module import {
+        header "import.h"
+        export *
+    }
+
+    explicit module intobject {
+        header "intobject.h"
+        export *
+    }
+
+    explicit module intrcheck {
+        header "intrcheck.h"
+        export *
+    }
+
+    explicit module iterobject {
+        header "iterobject.h"
+        export *
+    }
+
+    explicit module listobject {
+        header "listobject.h"
+        export *
+    }
+
+    explicit module longintrepr {
+        header "longintrepr.h"
+        export *
+    }
+
+    explicit module longobject {
+        header "longobject.h"
+        export *
+    }
+
+    explicit module marshal {
+        header "marshal.h"
+        export *
+    }
+
+    explicit module memoryobject {
+        header "memoryobject.h"
+        export *
+    }
+
+    explicit module metagrammar {
+        header "metagrammar.h"
+        export *
+    }
+
+    explicit module methodobject {
+        header "methodobject.h"
+        export *
+    }
+
+    explicit module modsupport {
+        header "modsupport.h"
+        export *
+    }
+
+    explicit module moduleobject {
+        header "moduleobject.h"
+        export *
+    }
+
+    explicit module object {
+        header "object.h"
+        export *
+    }
+
+    explicit module objimpl {
+        header "objimpl.h"
+        export *
+    }
+
+    explicit module opcode {
+        header "opcode.h"
+        export *
+    }
+
+    explicit module osdefs {
+        header "osdefs.h"
+        export *
+    }
+
+    explicit module parsetok {
+        header "parsetok.h"
+        export *
+    }
+
+    explicit module patchlevel {
+        header "patchlevel.h"
+        export *
+    }
+
+    explicit module pgen {
+        header "pgen.h"
+        export *
+    }
+
+    explicit module pgenheaders {
+        header "pgenheaders.h"
+        export *
+    }
+
+    explicit module py_curses {
+        header "py_curses.h"
+        export *
+    }
+
+    explicit module pyarena {
+        header "pyarena.h"
+        export *
+    }
+
+    explicit module pycapsule {
+        header "pycapsule.h"
+        export *
+    }
+
+    explicit module pyconfig {
+        header "pyconfig.h"
+        export *
+    }
+
+    explicit module pyctype {
+        header "pyctype.h"
+        export *
+    }
+
+    explicit module pydebug {
+        header "pydebug.h"
+        export *
+    }
+
+    explicit module pyerrors {
+        header "pyerrors.h"
+        export *
+    }
+
+    explicit module pyfpe {
+        header "pyfpe.h"
+        export *
+    }
+
+    explicit module pygetopt {
+        header "pygetopt.h"
+        export *
+    }
+
+    explicit module pymacconfig {
+        header "pymacconfig.h"
+        export *
+    }
+
+    explicit module pymactoolbox {
+        header "pymactoolbox.h"
+        export *
+    }
+
+    explicit module pymath {
+        header "pymath.h"
+        export *
+    }
+
+    explicit module pymem {
+        header "pymem.h"
+        export *
+    }
+
+    explicit module pyport {
+        header "pyport.h"
+        export *
+    }
+
+    explicit module pystate {
+        header "pystate.h"
+        export *
+    }
+
+    explicit module pystrcmp {
+        header "pystrcmp.h"
+        export *
+    }
+
+    explicit module pystrtod {
+        header "pystrtod.h"
+        export *
+    }
+
+    explicit module pythonrun {
+        header "pythonrun.h"
+        export *
+    }
+
+    explicit module pythread {
+        header "pythread.h"
+        export *
+    }
+
+    explicit module rangeobject {
+        header "rangeobject.h"
+        export *
+    }
+
+    explicit module setobject {
+        header "setobject.h"
+        export *
+    }
+
+    explicit module sliceobject {
+        header "sliceobject.h"
+        export *
+    }
+
+    explicit module stringobject {
+        header "stringobject.h"
+        export *
+    }
+
+    explicit module structmember {
+        header "structmember.h"
+        export *
+    }
+
+    explicit module structseq {
+        header "structseq.h"
+        export *
+    }
+
+    explicit module symtable {
+        header "symtable.h"
+        export *
+    }
+
+    explicit module sysmodule {
+        header "sysmodule.h"
+        export *
+    }
+
+    explicit module timefuncs {
+        header "timefuncs.h"
+        export *
+    }
+
+    explicit module token {
+        header "token.h"
+        export *
+    }
+
+    explicit module traceback {
+        header "traceback.h"
+        export *
+    }
+
+    explicit module tupleobject {
+        header "tupleobject.h"
+        export *
+    }
+
+    explicit module ucnhash {
+        header "ucnhash.h"
+        export *
+    }
+
+    explicit module unicodeobject {
+        header "unicodeobject.h"
+        export *
+    }
+
+    explicit module warnings {
+        header "warnings.h"
+        export *
+    }
+
+    explicit module weakrefobject {
+        header "weakrefobject.h"
+        export *
+    }
+    
+    // Missing #include
+    exclude header "pyexpat.h"
+
+}
