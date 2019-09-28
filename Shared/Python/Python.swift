@@ -6,7 +6,7 @@
 //  Copyright © 2018 0bmxa. All rights reserved.
 //
 
-import Python2_7
+import Python3_7
 
 
 /// A new "Python" namespace

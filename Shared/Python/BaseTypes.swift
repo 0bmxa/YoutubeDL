@@ -6,7 +6,7 @@
 //  Copyright © 2018 0bmxa. All rights reserved.
 //
 
-import Python2_7
+import Python3_7
 
 // MARK: - Simple Types
 extension Python {
@@ -36,7 +36,7 @@ extension Python {
         // MARK: - PythonSwiftConvertible
         typealias SwiftType = Swift.Bool
         var swiftValue: SwiftType {
-            let int = PyInt_AsLong(self.pyObject)
+            let int = PyLong_AsLong(self.pyObject)
             return (int != 0)
         }
     }
@@ -50,13 +50,13 @@ extension Python {
         deinit { Py_DecRef(self.pyObject) }
         
         init(_ swiftInt: Swift.Int) {
-            self.pyObject = PyInt_FromLong(swiftInt)
+            self.pyObject = PyLong_FromLong(swiftInt)
         }
         
         // MARK: - PythonSwiftConvertible
         typealias SwiftType = Swift.Int
         var swiftValue: SwiftType {
-            return PyInt_AsLong(self.pyObject)
+            return PyLong_AsLong(self.pyObject)
         }
     }
     
@@ -95,38 +95,18 @@ extension Python {
         
         init(_ value: Swift.String) {
             let cString = value.withCString { $0 }
-            self.pyObject = PyString_FromString(cString)
+            self.pyObject = PyUnicode_FromString(cString)
         }
         
         // MARK: - PythonSwiftConvertible
         typealias SwiftType = Swift.String
         var swiftValue: SwiftType {
-            let cString = PyString_AsString(self.pyObject)!
+            let cString = PyUnicode_AsUTF8(self.pyObject)!
             return Swift.String(cString: cString)
         }
     }
     
-    class UnicodeString: PythonRepresentable, PythonSwiftConvertible {
-        let pyObject: PythonObjectPointer
-        required init?(raw: PythonObjectPointer) {
-            guard Python.type(of: raw) == Python.UnicodeString.self else { assertionFailure(); return nil }
-            self.pyObject = raw
-        }
-        deinit { Py_DecRef(self.pyObject) }
-        
-        init(_ value: Swift.String) {
-            let cString = value.withCString { $0 }
-            self.pyObject = PyUnicodeUCS2_FromString(cString)
-        }
-        
-        // MARK: - PythonSwiftConvertible
-        typealias SwiftType = Swift.String
-        var swiftValue: SwiftType {
-            let pyString = PyUnicodeUCS2_AsUTF8String(self.pyObject)!
-            let cString = PyString_AsString(pyString)!
-            return Swift.String(cString: cString)
-        }
-    }
+    typealias UnicodeString = Python.String
 }
 
 
@@ -268,10 +248,9 @@ extension Python {
         case &PyBool_Type:    return Python.Bool.self
         case &PyDict_Type:    return Python.Dict.self
         case &PyList_Type:    return Python.List.self
-        case &PyInt_Type:     return Python.Int.self
-        case &PyString_Type:  return Python.String.self
+        case &PyLong_Type:    return Python.Int.self
+        case &PyUnicode_Type: return Python.String.self
         case &PyTuple_Type:   return Python.Tuple.self
-        case &PyUnicode_Type: return Python.UnicodeString.self
         case &PyFloat_Type:   return Python.Float.self
             
         default:
