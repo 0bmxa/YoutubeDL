@@ -1,5 +1,0 @@
-#!/Users/mxa/Documents/code/PythonFrameworkBuilder/build/macOS/Python2_7.framework/Versions/2.7/bin/python2.7
-
-from idlelib.PyShell import main
-if __name__ == '__main__':
-    main()

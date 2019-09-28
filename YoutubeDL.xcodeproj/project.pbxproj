@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EE25401523088385000A6701 /* Python2_7.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE25401423088385000A6701 /* Python2_7.framework */; };
 		EE50F1A0220485D00088B7EB /* Python.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F198220485D00088B7EB /* Python.swift */; };
 		EE50F1A1220485D00088B7EB /* BaseTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F199220485D00088B7EB /* BaseTypes.swift */; };
 		EE50F1A2220485D00088B7EB /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F19A220485D00088B7EB /* Module.swift */; };
 		EE50F1A3220485D00088B7EB /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F19B220485D00088B7EB /* Tools.swift */; };
 		EE50F1A5220485D00088B7EB /* YoutubeDL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50F19E220485D00088B7EB /* YoutubeDL.swift */; };
 		EE50F1A92204CEA50088B7EB /* youtube_dl in Copy Python Sources */ = {isa = PBXBuildFile; fileRef = EE50F1A72204CE970088B7EB /* youtube_dl */; };
+		EE6AD692233FA98E00AE2AA6 /* Python3_7.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6AD691233FA98E00AE2AA6 /* Python3_7.framework */; };
 		EEAEFACF2203313100C683EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAEFACE2203313100C683EB /* AppDelegate.swift */; };
 		EEAEFAD12203313200C683EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEAEFAD02203313200C683EB /* Assets.xcassets */; };
 		EEAEFAD42203313200C683EB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEAEFAD22203313200C683EB /* MainMenu.xib */; };
@@ -38,13 +38,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		EE25401423088385000A6701 /* Python2_7.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python2_7.framework; path = prebuilt/macOS/Python2_7.framework; sourceTree = "<group>"; };
 		EE50F198220485D00088B7EB /* Python.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Python.swift; sourceTree = "<group>"; };
 		EE50F199220485D00088B7EB /* BaseTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTypes.swift; sourceTree = "<group>"; };
 		EE50F19A220485D00088B7EB /* Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		EE50F19B220485D00088B7EB /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		EE50F19E220485D00088B7EB /* YoutubeDL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeDL.swift; sourceTree = "<group>"; };
 		EE50F1A72204CE970088B7EB /* youtube_dl */ = {isa = PBXFileReference; lastKnownFileType = folder; name = youtube_dl; path = "external/youtube-dl/youtube_dl"; sourceTree = "<group>"; };
+		EE6AD691233FA98E00AE2AA6 /* Python3_7.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python3_7.framework; path = prebuilt/macOS/Python3_7.framework; sourceTree = "<group>"; };
 		EEAEFACC2203313100C683EB /* YoutubeDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoutubeDL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEAEFACE2203313100C683EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEAEFAD02203313200C683EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE25401523088385000A6701 /* Python2_7.framework in Frameworks */,
+				EE6AD692233FA98E00AE2AA6 /* Python3_7.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +72,7 @@
 		EE50F18F22047DDE0088B7EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EE25401423088385000A6701 /* Python2_7.framework */,
+				EE6AD691233FA98E00AE2AA6 /* Python3_7.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
