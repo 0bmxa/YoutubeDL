@@ -21,17 +21,17 @@ extension YoutubeDL {
         let playerURL: String?
         
         init(_ dict: [String: PythonRepresentable]) {
-            self.name              = (dict["format_note"] as? Python.UnicodeString)?.swiftValue
-            self.formatID          = (dict["format_id"] as? Python.UnicodeString)?.swiftValue
-            self.fileExtension     = (dict["ext"] as? Python.UnicodeString)?.swiftValue
-            self.url               = (dict["url"] as? Python.UnicodeString)?.swiftValue
+            self.name              = (dict["format_note"] as? Python.String)?.swiftValue
+            self.formatID          = (dict["format_id"] as? Python.String)?.swiftValue
+            self.fileExtension     = (dict["ext"] as? Python.String)?.swiftValue
+            self.url               = (dict["url"] as? Python.String)?.swiftValue
             self.fileSize          = (dict["filesize"] as? Python.Int)?.swiftValue
             self.quality           = (dict["quality"] as? Python.Int)?.swiftValue
             self.downloaderOptions = (dict["downloader_options"] as? Python.Dict)?.swiftValue
-            self.playerURL         = (dict["player_url"] as? Python.UnicodeString)?.swiftValue
+            self.playerURL         = (dict["player_url"] as? Python.String)?.swiftValue
 
-            let audioCodec   = (dict["acodec"] as? Python.UnicodeString)?.swiftValue
-            let videoCodec   = (dict["vcodec"] as? Python.UnicodeString)?.swiftValue
+            let audioCodec   = (dict["acodec"] as? Python.String)?.swiftValue
+            let videoCodec   = (dict["vcodec"] as? Python.String)?.swiftValue
             let videoBitrate = (dict["tbr"] as? Python.Float)?.swiftFloatValue
             var audioBitrate: Float?
             if let abr = (dict["abr"] as? Python.Int)?.swiftValue {

@@ -33,7 +33,7 @@ extension Python {
             self.pyObject = PyBool_FromLong(swiftBool ? 1 : 0)
         }
         
-        // MARK: - PythonSwiftConvertible
+        // MARK: PythonSwiftConvertible
         typealias SwiftType = Swift.Bool
         var swiftValue: SwiftType {
             let int = PyLong_AsLong(self.pyObject)
@@ -53,7 +53,7 @@ extension Python {
             self.pyObject = PyLong_FromLong(swiftInt)
         }
         
-        // MARK: - PythonSwiftConvertible
+        // MARK: PythonSwiftConvertible
         typealias SwiftType = Swift.Int
         var swiftValue: SwiftType {
             return PyLong_AsLong(self.pyObject)
@@ -73,7 +73,7 @@ extension Python {
             self.pyObject = PyFloat_FromDouble(swiftDouble)
         }
         
-        // MARK: - PythonSwiftConvertible
+        // MARK: PythonSwiftConvertible
         typealias SwiftType = Swift.Double
         var swiftValue: SwiftType {
             return PyFloat_AsDouble(self.pyObject)
@@ -88,7 +88,7 @@ extension Python {
     class String: PythonRepresentable, PythonSwiftConvertible {
         let pyObject: PythonObjectPointer
         required init?(raw: PythonObjectPointer) {
-            guard Python.type(of: raw) == Python.String.self else { assertionFailure(); return nil }
+            guard raw.type == Python.String.self else { assertionFailure(); return nil }
             self.pyObject = raw
         }
         deinit { Py_DecRef(self.pyObject) }
@@ -98,15 +98,13 @@ extension Python {
             self.pyObject = PyUnicode_FromString(cString)
         }
         
-        // MARK: - PythonSwiftConvertible
+        // MARK: PythonSwiftConvertible
         typealias SwiftType = Swift.String
         var swiftValue: SwiftType {
             let cString = PyUnicode_AsUTF8(self.pyObject)!
             return Swift.String(cString: cString)
         }
     }
-    
-    typealias UnicodeString = Python.String
 }
 
 
@@ -149,7 +147,7 @@ extension Python {
             }
         }
         
-        // MARK: - PythonSwiftConvertible
+        // MARK: PythonSwiftConvertible
         typealias SwiftType = [Swift.String: PythonRepresentable]
         var swiftValue: SwiftType? {
             guard
@@ -161,7 +159,7 @@ extension Python {
             for index in (0..<keys.count) {
                 guard
                     let key = keys[index],
-                    let keyString = Python.UnicodeString(raw: key.pyObject)
+                    let keyString = Python.String(raw: key.pyObject)
                 else { assertionFailure(); continue }
                 let val = self[keyString]
                 swiftDict[keyString.swiftValue] = val
@@ -171,20 +169,19 @@ extension Python {
         }
         
         subscript(key: Swift.String) -> PythonRepresentable! {
-            let pyKey = Python.UnicodeString(key)
+            let pyKey = Python.String(key)
             return self[pyKey]
         }
 
-        subscript(key: Python.UnicodeString) -> PythonRepresentable? {
+        subscript(key: Python.String) -> PythonRepresentable? {
             guard let pyItem = PyDict_GetItem(self.pyObject, key.pyObject) else {
                 assertionFailure(); return nil
             }
-            let pyItemType = Python.type(of: pyItem)
-            return pyItemType?.init(raw: pyItem)
+            return pyItem.type?.init(raw: pyItem)
         }
     }
     
-    typealias Array = List
+//    typealias Array = List
     class List: PythonRepresentable, PythonSwiftConvertible {
         let pyObject: PythonObjectPointer
         required init?(raw: PythonObjectPointer) {
@@ -209,11 +206,10 @@ extension Python {
             guard let pyItem = PyList_GetItem(self.pyObject, index) else {
                 assertionFailure(); return nil
             }
-            let pyItemType = Python.type(of: pyItem)
-            return pyItemType?.init(raw: pyItem)!
+            return pyItem.type?.init(raw: pyItem)
         }
         
-        // MARK: - PythonSwiftConvertible
+        // MARK: PythonSwiftConvertible
         typealias SwiftType = [PythonRepresentable?]
         var swiftValue: SwiftType {
             let length = PyList_Size(self.pyObject)
@@ -221,8 +217,7 @@ extension Python {
             
             return indices.map { index -> PythonRepresentable? in
                 guard let pyItem = PyList_GetItem(self.pyObject, index) else { assertionFailure(); return nil }
-                let pyItemType = Python.type(of: pyItem)
-                return pyItemType?.init(raw: pyItem)
+                return pyItem.type?.init(raw: pyItem)
             }
         }
     }
@@ -234,33 +229,6 @@ func PyList_SET_ITEM(op: PythonObjectPointer, i: Py_ssize_t, v: PythonObjectPoin
     listOP.pointee.ob_item[i] = v
 }
 */
-
-extension Python {
-    static func type(of pyObject: PythonObjectPointer) -> PythonRepresentable.Type? {
-        if pyObject == &_Py_NoneStruct {
-            return Python.None.self
-        }
-        
-
-        
-        let objectType = pyObject.pointee.ob_type
-        switch objectType {
-        case &PyBool_Type:    return Python.Bool.self
-        case &PyDict_Type:    return Python.Dict.self
-        case &PyList_Type:    return Python.List.self
-        case &PyLong_Type:    return Python.Int.self
-        case &PyUnicode_Type: return Python.String.self
-        case &PyTuple_Type:   return Python.Tuple.self
-        case &PyFloat_Type:   return Python.Float.self
-            
-        default:
-            let name = Swift.String(cString: pyObject.pointee.ob_type.pointee.tp_name!)
-            dprint("Type not supported:", name)
-            assertionFailure()
-            return nil
-        }
-    }
-}
 
 
 extension Python {

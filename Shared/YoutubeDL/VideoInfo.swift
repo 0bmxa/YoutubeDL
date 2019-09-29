@@ -57,17 +57,17 @@ extension YoutubeDL {
             self.automaticCaptions  = (dict["automatic_captions"] as? Python.Dict)?.swiftValue
             self.averageRating      =  dict["average_rating"]
             self.categories         = (dict["categories"] as? Python.List)?.swiftValue
-            self.channelID          = (dict["channel_id"] as? Python.UnicodeString)?.swiftValue
-            self.channelURL         = (dict["channel_url"] as? Python.UnicodeString)?.swiftValue
+            self.channelID          = (dict["channel_id"] as? Python.String)?.swiftValue
+            self.channelURL         = (dict["channel_url"] as? Python.String)?.swiftValue
             self.chapters           =  dict["chapters"]
             self.creator            =  dict["creator"]
-            self.description        = (dict["description"] as? Python.UnicodeString)?.swiftValue
+            self.description        = (dict["description"] as? Python.String)?.swiftValue
             self.dislikeCount       = (dict["dislike_count"] as? Python.Int)?.swiftValue
             self.duration           = (dict["duration"] as? Python.Int)?.swiftValue
             self.endTime            =  dict["end_time"]
             self.episodeNumber      =  dict["episode_number"]
-            self.extractorKey       = (dict["extractor_key"] as? Python.UnicodeString)?.swiftValue
-            self.extractor          = (dict["extractor"] as? Python.UnicodeString)?.swiftValue
+            self.extractorKey       = (dict["extractor_key"] as? Python.String)?.swiftValue
+            self.extractor          = (dict["extractor"] as? Python.String)?.swiftValue
             self.ID                 = (dict["id"] as? Python.String)?.swiftValue
             self.isLive             =  dict["is_live"]
             self.license            =  dict["license"]
@@ -77,16 +77,16 @@ extension YoutubeDL {
             self.startTime          =  dict["start_time"]
             self.subtitles          = (dict["subtitles"] as? Python.Dict)?.swiftValue
             self.tags               = (dict["tags"] as? Python.List)?.swiftValue
-            self.thumbnail          = (dict["thumbnail"] as? Python.UnicodeString)?.swiftValue
-            self.title              = (dict["title"] as? Python.UnicodeString)?.swiftValue
+            self.thumbnail          = (dict["thumbnail"] as? Python.String)?.swiftValue
+            self.title              = (dict["title"] as? Python.String)?.swiftValue
             self.track              =  dict["track"]
-            self.uploadDate         = (dict["upload_date"] as? Python.UnicodeString)?.swiftValue
-            self.uploaderID         = (dict["uploader_id"] as? Python.UnicodeString)?.swiftValue
-            self.uploaderURL        = (dict["uploader_url"] as? Python.UnicodeString)?.swiftValue
-            self.uploader           = (dict["uploader"] as? Python.UnicodeString)?.swiftValue
+            self.uploadDate         = (dict["upload_date"] as? Python.String)?.swiftValue
+            self.uploaderID         = (dict["uploader_id"] as? Python.String)?.swiftValue
+            self.uploaderURL        = (dict["uploader_url"] as? Python.String)?.swiftValue
+            self.uploader           = (dict["uploader"] as? Python.String)?.swiftValue
             self.viewCount          = (dict["view_count"] as? Python.Int)?.swiftValue
-            self.webpageURLBasename = (dict["webpage_url_basename"] as? Python.UnicodeString)?.swiftValue
-            self.webpageURL         = (dict["webpage_url"] as? Python.UnicodeString)?.swiftValue
+            self.webpageURLBasename = (dict["webpage_url_basename"] as? Python.String)?.swiftValue
+            self.webpageURL         = (dict["webpage_url"] as? Python.String)?.swiftValue
             
 
 

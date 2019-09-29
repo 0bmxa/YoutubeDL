@@ -46,6 +46,11 @@ extension Python {
             self.pyObject = raw
             self.name = nil
         }
+        
+        var dict: Python.Dict? {
+            guard let pyObject = PyModule_GetDict(self.pyObject) else { return nil }
+            return Python.Dict(raw: pyObject)
+        }
 
         
 
