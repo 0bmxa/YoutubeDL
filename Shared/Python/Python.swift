@@ -19,6 +19,15 @@ enum Python {
         Py_Initialize()
     }
     
+    static func finalize() {
+        Py_Finalize()
+    }
+    
+    static func extendSysPath(path newPath: Swift.String) {
+        let sys = PyImport_ImportModule("sys")
+        let sysPath = PyObject_GetAttrString(sys, "path")
+        PyList_Append(sysPath, PyUnicode_FromString(newPath))
+    }
 
     /// Executes Python code passed as string in the main module.
     ///

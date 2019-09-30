@@ -12,7 +12,7 @@ import Python3_7
 extension Python {
     class None: PythonRepresentable {
         var pyObject: PythonObjectPointer
-        required convenience init?(raw: PythonObjectPointer) { self.init() }
+        required convenience init(raw: PythonObjectPointer) { self.init() }
         deinit { Py_DecRef(self.pyObject) }
         
         init() {
@@ -23,7 +23,7 @@ extension Python {
     
     class Bool: PythonRepresentable, PythonSwiftConvertible {
         let pyObject: PythonObjectPointer
-        required init?(raw: PythonObjectPointer) {
+        required init(raw: PythonObjectPointer) {
             self.pyObject = raw
             Py_IncRef(self.pyObject)
         }
@@ -43,7 +43,7 @@ extension Python {
     
     class Int: PythonRepresentable, PythonSwiftConvertible {
         let pyObject: PythonObjectPointer
-        required init?(raw: PythonObjectPointer) {
+        required init(raw: PythonObjectPointer) {
             self.pyObject = raw
             Py_IncRef(self.pyObject)
         }
@@ -63,7 +63,7 @@ extension Python {
     typealias Double = Float
     class Float: PythonRepresentable, PythonSwiftConvertible {
         let pyObject: PythonObjectPointer
-        required init?(raw: PythonObjectPointer) {
+        required init(raw: PythonObjectPointer) {
             self.pyObject = raw
             Py_IncRef(self.pyObject)
         }
@@ -87,15 +87,16 @@ extension Python {
 
     class String: PythonRepresentable, PythonSwiftConvertible {
         let pyObject: PythonObjectPointer
-        required init?(raw: PythonObjectPointer) {
-            guard raw.type == Python.String.self else { assertionFailure(); return nil }
+        required init(raw: PythonObjectPointer) {
+            guard raw.type == Python.String.self else { fatalError() }
             self.pyObject = raw
+            Py_IncRef(self.pyObject)
         }
         deinit { Py_DecRef(self.pyObject) }
         
         init(_ value: Swift.String) {
             let cString = value.withCString { $0 }
-            self.pyObject = PyUnicode_FromString(cString)
+            self.pyObject = PyUnicode_FromString(cString)!
         }
         
         // MARK: PythonSwiftConvertible
@@ -112,7 +113,7 @@ extension Python {
 extension Python {
     class Tuple: PythonRepresentable {
         let pyObject: PythonObjectPointer
-        required init?(raw: PythonObjectPointer) {
+        required init(raw: PythonObjectPointer) {
             self.pyObject = raw
             Py_IncRef(self.pyObject)
         }
@@ -133,11 +134,14 @@ extension Python {
     
     class Dict: PythonRepresentable, PythonSwiftOptionalConvertible {
         let pyObject: PythonObjectPointer
-        required init?(raw: PythonObjectPointer) {
+        required init(raw: PythonObjectPointer) {
             self.pyObject = raw
             Py_IncRef(self.pyObject)
         }
-        deinit { Py_DecRef(self.pyObject) }
+        deinit {
+            guard self.pyObject.pointee.ob_refcnt > 0 else { return }
+            Py_DecRef(self.pyObject)
+        }
         
         init(_ values: [Swift.String: PythonRepresentable]) {
             self.pyObject = PyDict_New()
@@ -147,44 +151,37 @@ extension Python {
             }
         }
         
+        var keys: List {
+            let keys = PyDict_Keys(self.pyObject)!
+            return Python.List(raw: keys)
+        }
+        
+        
         // MARK: PythonSwiftConvertible
         typealias SwiftType = [Swift.String: PythonRepresentable]
         var swiftValue: SwiftType? {
-            guard
-                let keysPointer = PyDict_Keys(self.pyObject),
-                let keys = Python.List(raw: keysPointer)
-            else { assertionFailure(); return nil }
-            
-            var swiftDict = SwiftType()
-            for index in (0..<keys.count) {
-                guard
-                    let key = keys[index],
-                    let keyString = Python.String(raw: key.pyObject)
-                else { assertionFailure(); continue }
-                let val = self[keyString]
-                swiftDict[keyString.swiftValue] = val
+            let pairs: [(Swift.String, PythonRepresentable)] = self.keys.map {
+                let key = Python.String(raw: $0.pyObject)
+                let val = self[key] ?? Python.String("[ERROR]")
+                return (key.swiftValue, val)
             }
-            
-            return swiftDict
+            return SwiftType(uniqueKeysWithValues: pairs)
         }
         
-        subscript(key: Swift.String) -> PythonRepresentable! {
-            let pyKey = Python.String(key)
-            return self[pyKey]
+        subscript(key: Swift.String) -> PythonRepresentable? {
+            guard let pyItem = PyDict_GetItemString(self.pyObject, key) else { assertionFailure(); return nil }
+            return pyItem.representable
         }
 
         subscript(key: Python.String) -> PythonRepresentable? {
-            guard let pyItem = PyDict_GetItem(self.pyObject, key.pyObject) else {
-                assertionFailure(); return nil
-            }
-            return pyItem.type?.init(raw: pyItem)
+            guard let pyItem = PyDict_GetItem(self.pyObject, key.pyObject) else { assertionFailure(); return nil }
+            return pyItem.representable
         }
     }
     
-//    typealias Array = List
     class List: PythonRepresentable, PythonSwiftConvertible {
         let pyObject: PythonObjectPointer
-        required init?(raw: PythonObjectPointer) {
+        required init(raw: PythonObjectPointer) {
             self.pyObject = raw
             Py_IncRef(self.pyObject)
         }
@@ -206,7 +203,7 @@ extension Python {
             guard let pyItem = PyList_GetItem(self.pyObject, index) else {
                 assertionFailure(); return nil
             }
-            return pyItem.type?.init(raw: pyItem)
+            return pyItem.representable
         }
         
         // MARK: PythonSwiftConvertible
@@ -215,10 +212,34 @@ extension Python {
             let length = PyList_Size(self.pyObject)
             let indices = (0..<length)
             
-            return indices.map { index -> PythonRepresentable? in
-                guard let pyItem = PyList_GetItem(self.pyObject, index) else { assertionFailure(); return nil }
-                return pyItem.type?.init(raw: pyItem)
-            }
+            return indices.map { self[$0] }
+        }
+    }
+}
+
+extension Python.List: Sequence {
+    typealias Element = PythonRepresentable
+    
+    func makeIterator() -> Python.List.Iterator {
+        return Python.List.Iterator(for: self)
+    }
+
+    class Iterator: IteratorProtocol {
+        typealias Element = Python.List.Element
+        
+        private let list: Python.List
+        private let listSize: Int
+        private var currentIndex: Int = -1
+        
+        init(for list: Python.List) {
+            self.list = list
+            self.listSize = list.count
+        }
+        
+        func next() -> Python.List.Element? {
+            currentIndex += 1
+            guard currentIndex < self.listSize else { return nil }
+            return self.list[currentIndex]
         }
     }
 }

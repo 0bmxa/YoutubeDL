@@ -19,9 +19,7 @@ extension Python {
         deinit { Py_DecRef(self.pyObject) }
 
         init?(name: Swift.String) {
-            let moduleName = Python.String(name)
-            
-            guard let module = PyImport_Import(moduleName.pyObject) else {
+            guard let module = PyImport_ImportModule(name) else {
                 dprint("Couldn't find module " + name)
                 return nil
             }
@@ -31,9 +29,7 @@ extension Python {
         }
 
         init?(in module: Python.Module, name: Swift.String) {
-            let submoduleName = Python.String(name)
-            
-            guard let submodule = PyObject_GetAttr(module.pyObject, submoduleName.pyObject) else {
+            guard let submodule = PyObject_GetAttrString(module.pyObject, name) else {
                 dprint("Couldn't find function '\(name)' in module \(module.name ?? "[unknown]")")
                 return nil
             }
@@ -42,9 +38,10 @@ extension Python {
             self.name = name
         }
 
-        required init?(raw: PythonObjectPointer) {
+        required init(raw: PythonObjectPointer) {
             self.pyObject = raw
             self.name = nil
+            Py_IncRef(self.pyObject)
         }
         
         var dict: Python.Dict? {
@@ -84,7 +81,7 @@ extension Python {
             //let keywords = PyDict([:])
             let keywords: PythonObjectPointer! = nil
             let result = PyObject_Call(self.pyObject, _args.pyObject, keywords)
-
+            
             if let result = result {
                 return R.init(raw: result)
             }

@@ -8,7 +8,9 @@
 
 import Foundation
 
-struct YoutubeDL {
+import Python3_7
+
+class YoutubeDL {
     var module: Python.Module
     
     init() {
@@ -17,13 +19,14 @@ struct YoutubeDL {
         
         guard let resourcePath = Bundle.main.resourcePath else { fatalError() }
         let modulePath = resourcePath.appending("/python_libs")
-        
-        var pathAppendPyCode = "import sys\n"
-        pathAppendPyCode += "sys.path.append('\(modulePath)')\n"
-        Python.run(string: pathAppendPyCode)
+        Python.extendSysPath(path: modulePath)
 
         guard let module = Python.Module(name: "youtube_dl") else { fatalError() }
         self.module = module
+    }
+    
+    deinit {
+        Python.finalize()
     }
     
     internal func getVideoInfo(pageURL: URL) -> VideoInfo? {

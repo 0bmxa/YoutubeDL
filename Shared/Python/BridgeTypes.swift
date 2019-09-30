@@ -11,7 +11,7 @@ import Python3_7
 // MARK: - PythonRepresentable
 protocol PythonRepresentable: CustomStringConvertible {
     var pyObject: PythonObjectPointer { get }
-    init?(raw: PythonObjectPointer)
+    init(raw: PythonObjectPointer)
 }
 
 // MARK: CustomStringConvertible
@@ -43,14 +43,15 @@ extension PythonObjectPointer {
         case &PyFloat_Type:   return Python.Float.self
             
         default:
-            dprint("\nType not supported:", self.typeName!, "\n")
-            assertionFailure()
+            dprint("Type not supported:", self.typeName!)
+//            assertionFailure()
             return nil
         }
     }
     
     var typeName: Swift.String? {
-        guard let typeName = self.pointee.ob_type.pointee.tp_name else { return nil }
+        guard self != &_Py_NoneStruct else { fatalError() }
+        guard let typeName = self.pointee.ob_type?.pointee.tp_name else { return "?" }
         return Swift.String(cString: typeName)
     }
 }
@@ -58,8 +59,12 @@ extension PythonObjectPointer {
 extension PythonObjectPointer: CustomStringConvertible {
     public var description: Swift.String {
         let stringRep = PyObject_Repr(self)!
-        let content = Python.String(raw: stringRep)!.swiftValue
+        let content = Python.String(raw: stringRep).swiftValue
         return "Python.\(self.type!): \(content)"
+    }
+    
+    var representable: PythonRepresentable? {
+        return self.type?.init(raw: self)
     }
 }
 
