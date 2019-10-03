@@ -8,7 +8,7 @@
 
 import Python3_7
 
-// MARK: - Simple Types
+// MARK: - None
 extension Python {
     class None: PythonRepresentable {
         var pyObject: PythonObjectPointer
@@ -20,7 +20,11 @@ extension Python {
             Py_IncRef(self.pyObject)
         }
     }
-    
+}
+
+
+// MARK: - Bool
+extension Python {
     class Bool: PythonRepresentable, PythonSwiftConvertible {
         let pyObject: PythonObjectPointer
         required init(raw: PythonObjectPointer) {
@@ -40,7 +44,11 @@ extension Python {
             return (int != 0)
         }
     }
-    
+}
+
+
+// MARK: - Int
+extension Python {
     class Int: PythonRepresentable, PythonSwiftConvertible {
         let pyObject: PythonObjectPointer
         required init(raw: PythonObjectPointer) {
@@ -59,8 +67,11 @@ extension Python {
             return PyLong_AsLong(self.pyObject)
         }
     }
-    
-    typealias Double = Float
+}
+
+
+// MARK: - Float
+extension Python {
     class Float: PythonRepresentable, PythonSwiftConvertible {
         let pyObject: PythonObjectPointer
         required init(raw: PythonObjectPointer) {
@@ -84,7 +95,11 @@ extension Python {
         }
         
     }
+}
 
+
+// MARK: - String
+extension Python {
     class String: PythonRepresentable, PythonSwiftConvertible {
         let pyObject: PythonObjectPointer
         required init(raw: PythonObjectPointer) {
@@ -109,7 +124,7 @@ extension Python {
 }
 
 
-// MARK: - Collection types
+// MARK: - Tuple
 extension Python {
     class Tuple: PythonRepresentable {
         let pyObject: PythonObjectPointer
@@ -129,159 +144,6 @@ extension Python {
             values.enumerated().forEach {
                 PyTuple_SetItem(self.pyObject, $0.offset, $0.element.pyObject)
             }
-        }
-    }
-    
-    class Dict: PythonRepresentable, PythonSwiftOptionalConvertible {
-        let pyObject: PythonObjectPointer
-        required init(raw: PythonObjectPointer) {
-            self.pyObject = raw
-            Py_IncRef(self.pyObject)
-        }
-        deinit {
-            guard self.pyObject.pointee.ob_refcnt > 0 else { return }
-            Py_DecRef(self.pyObject)
-        }
-        
-        init(_ values: [Swift.String: PythonRepresentable]) {
-            self.pyObject = PyDict_New()
-            
-            values.forEach {
-                PyDict_SetItemString(self.pyObject, $0.key, $0.value.pyObject)
-            }
-        }
-        
-        var keys: List {
-            let keys = PyDict_Keys(self.pyObject)!
-            return Python.List(raw: keys)
-        }
-        
-        
-        // MARK: PythonSwiftConvertible
-        typealias SwiftType = [Swift.String: PythonRepresentable]
-        var swiftValue: SwiftType? {
-            let pairs: [(Swift.String, PythonRepresentable)] = self.keys.map {
-                let key = Python.String(raw: $0.pyObject)
-                let val = self[key] ?? Python.String("[ERROR]")
-                return (key.swiftValue, val)
-            }
-            return SwiftType(uniqueKeysWithValues: pairs)
-        }
-        
-        subscript(key: Swift.String) -> PythonRepresentable? {
-            guard let pyItem = PyDict_GetItemString(self.pyObject, key) else { assertionFailure(); return nil }
-            return pyItem.representable
-        }
-
-        subscript(key: Python.String) -> PythonRepresentable? {
-            guard let pyItem = PyDict_GetItem(self.pyObject, key.pyObject) else { assertionFailure(); return nil }
-            return pyItem.representable
-        }
-    }
-    
-    class List: PythonRepresentable, PythonSwiftConvertible {
-        let pyObject: PythonObjectPointer
-        required init(raw: PythonObjectPointer) {
-            self.pyObject = raw
-            Py_IncRef(self.pyObject)
-        }
-        deinit { Py_DecRef(self.pyObject) }
-        
-        init(_ values: [PythonRepresentable]) {
-            self.pyObject = PyList_New(values.count)
-            
-            values.enumerated().forEach {
-                PyList_SetItem(self.pyObject, $0.offset, $0.element.pyObject)
-            }
-        }
-        
-        var count: Swift.Int {
-            return PyList_Size(self.pyObject)
-        }
-        
-        subscript(index: Swift.Int) -> PythonRepresentable? {
-            guard let pyItem = PyList_GetItem(self.pyObject, index) else {
-                assertionFailure(); return nil
-            }
-            return pyItem.representable
-        }
-        
-        // MARK: PythonSwiftConvertible
-        typealias SwiftType = [PythonRepresentable?]
-        var swiftValue: SwiftType {
-            let length = PyList_Size(self.pyObject)
-            let indices = (0..<length)
-            
-            return indices.map { self[$0] }
-        }
-    }
-}
-
-extension Python.List: Sequence {
-    typealias Element = PythonRepresentable
-    
-    func makeIterator() -> Python.List.Iterator {
-        return Python.List.Iterator(for: self)
-    }
-
-    class Iterator: IteratorProtocol {
-        typealias Element = Python.List.Element
-        
-        private let list: Python.List
-        private let listSize: Int
-        private var currentIndex: Int = -1
-        
-        init(for list: Python.List) {
-            self.list = list
-            self.listSize = list.count
-        }
-        
-        func next() -> Python.List.Element? {
-            currentIndex += 1
-            guard currentIndex < self.listSize else { return nil }
-            return self.list[currentIndex]
-        }
-    }
-}
-
-/*
-func PyList_SET_ITEM(op: PythonObjectPointer, i: Py_ssize_t, v: PythonObjectPointer) {
-    let listOP = op.withMemoryRebound(to: PyListObject.self, capacity: 1) { $0 }
-    listOP.pointee.ob_item[i] = v
-}
-*/
-
-
-extension Python {
-//    typealias PyCFunction =
-//        @convention(c) (PythonObjectPointer?, PythonObjectPointer?) -> PythonObjectPointer?
-
-    static func callback(name: Swift.String, function: @escaping PyCFunction) -> PyMethodDef {
-        let name = name.withCString { return $0 }
-        return PyMethodDef(
-            ml_name: name,
-            ml_meth: function,
-            ml_flags: METH_VARARGS,
-            ml_doc: nil
-        )
-    }
-    
-    
-    class CFunction: PythonRepresentable {
-        var pyObject: PythonObjectPointer
-        required init?(raw: PythonObjectPointer) { self.pyObject = raw }
-        deinit { Py_DecRef(self.pyObject) }
-        
-        init?(name: Swift.String, function: @escaping PyCFunction) {
-            let name = name.withCString { return $0 }
-            var pyMethod = PyMethodDef(
-                ml_name: name,
-                ml_meth: function,
-                ml_flags: METH_VARARGS,
-                ml_doc: nil
-            )
-            guard let pyFunction = PyCFunction_NewEx(&pyMethod, nil, nil) else { return nil }
-            self.pyObject = pyFunction
         }
     }
 }
